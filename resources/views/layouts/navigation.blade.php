@@ -18,8 +18,11 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('reimbursements.index')" :active="request()->routeIs('reimbursements')">
+                    <x-nav-link :href="route('reimbursements.index')" :active="request()->routeIs('reimbursements.index')">
                         {{ __('Reimbursements') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reimbursements.payment')" :active="request()->routeIs('reimbursements.payment')">
+                        {{ __('Payment') }}
                     </x-nav-link>
                 </div>
             </div>

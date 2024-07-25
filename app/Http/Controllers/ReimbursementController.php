@@ -10,6 +10,7 @@ class ReimbursementController extends Controller
     function __construct()
     {
         $this->middleware(['permission:reimbursement-approval'], ['only' => ['index', 'approval']]);
+        $this->middleware(['permission:payment-list'], ['only' => ['payment']]);
     }
     public function index()
     {
@@ -31,9 +32,12 @@ class ReimbursementController extends Controller
         return view('reimbursement.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function payment()
+    {
+        $data = Reimbursement::where('status',1)->get();
+        return view('reimbursement.payment', compact('data'));
+    }
+
     public function create()
     {
         //

@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/users', \App\Http\Controllers\UserController::class);
+    Route::get('/reimbursements/payment', [ReimbursementController::class, 'payment'])->name('reimbursements.payment');
     Route::resource('/reimbursements', \App\Http\Controllers\ReimbursementController::class);
     Route::patch('/reimbursements/approval/{id}', [ReimbursementController::class, 'approval'])->name('reimbursements.approved');
 });

@@ -19,6 +19,7 @@ class PermisionsTableSeeder extends Seeder
         'user-edit',
         'user-delete',
         'reimbursement-approval',
+        'payment-list',
     ];
 
     public function run(): void
@@ -37,8 +38,7 @@ class PermisionsTableSeeder extends Seeder
         //assign role finance
         $finance = User::find(2);
         $financeRole = Role::create(['name' => 'Finance']);
-        $financeRole->givePermissionTo('reimbursement-approval');
+        $financeRole->givePermissionTo('payment-list');
         $finance->assignRole('Finance');
-        
     }
 }
