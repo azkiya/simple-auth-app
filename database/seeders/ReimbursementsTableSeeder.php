@@ -14,9 +14,11 @@ class ReimbursementsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        Reimbursement::factory()->count(1)->create();
         DB::table('reimbursements')->insert([
             [
                 'no_invoice' => "INV/0624/001",
+                'nama' => "Reanu",
                 'tanggal' => now(),
                 'deskripsi' => "deskripsi reimbursement invoice",
                 'file' => 'uploads/reimbursement_dummy.pdf',
@@ -25,7 +27,5 @@ class ReimbursementsTableSeeder extends Seeder
                 'is_approved' => false,
             ]
         ]);
-        Reimbursement::factory()->count(2)->create();
-       
     }
 }

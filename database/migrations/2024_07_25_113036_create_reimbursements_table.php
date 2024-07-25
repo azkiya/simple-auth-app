@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reimbursements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_invoice')->unique();
+            $table->string('nama');
             $table->string('tanggal');
             $table->string('deskripsi');
             $table->string('file')->nullable();

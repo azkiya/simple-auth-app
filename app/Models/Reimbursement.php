@@ -15,6 +15,7 @@ class Reimbursement extends Model
      */
     protected $fillable = [
         'no_invoice',
+        'nama',
         'tanggal',
         'deskripsi',
         'file',

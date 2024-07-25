@@ -19,7 +19,8 @@ class ReimbursementFactory extends Factory
 
         return [
             'no_invoice' => "INV/0724/".$this->faker->randomNumber(3, true),
-            'tanggal' =>$this->faker->dateTimeThisYear(), 
+            'nama' =>  $this->faker->name,
+            'tanggal' => $this->faker->dateTimeThisYear(),
             'deskripsi' => $this->faker->text(200),
             'file' => $filePath,
             'created_at' => now(),
