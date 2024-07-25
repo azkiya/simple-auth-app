@@ -38,7 +38,7 @@ class PermisionsTableSeeder extends Seeder
         //assign role finance
         $finance = User::find(2);
         $financeRole = Role::create(['name' => 'Finance']);
-        $financeRole->givePermissionTo('payment-list');
+        $financeRole->givePermissionTo([ 'reimbursement-approval','payment-list']);
         $finance->assignRole('Finance');
     }
 }
