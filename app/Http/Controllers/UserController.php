@@ -38,12 +38,19 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        $jobTitles=['Direktur', 'Finance', 'Staff'];
+        return view('user.edit', compact('user', 'jobTitles'));
     }
 
     public function update(Request $request, User $user)
     {
-        $post->update($request->all());
+        $request->validate([
+            'nip' => 'required',
+            'nama' => 'required',
+            'jabatan' => 'required',
+        ]);
+        
+        $user->update($request->all());
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 

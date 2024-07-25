@@ -39,8 +39,13 @@
                             <a href="{{ route('users.edit', $user->id) }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline ms-3">Edit</a>
                             <a href="#"
+                                onclick="event.preventDefault(); if (confirm('Apakah anda yakin menghapus data karyawan ini ?')) { document.getElementById('delete-form-{{ $user->id }}').submit(); }"
                                 class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                            @csrf
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}"
+                                method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                 @empty
