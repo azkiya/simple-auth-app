@@ -20,21 +20,24 @@ class UsersTableSeeder extends Seeder
                 'nama' => 'Doni',
                 'jabatan' => 'Direktur',
                 'password' => Hash::make('123456'),
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'nip' => '1235',
                 'nama' => 'Dono',
                 'jabatan' => 'Finance',
                 'password' => Hash::make('123456'),
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'nip' => '1236',
                 'nama' => 'Dona',
                 'jabatan' => 'Staff',
                 'password' => Hash::make('123456'),
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ]);
     }

@@ -24,7 +24,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required',
+            'nip' => 'required|unique:users',
             'nama' => 'required',
             'jabatan' => 'required',
             'password' => 'required',
