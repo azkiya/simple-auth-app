@@ -7,9 +7,10 @@ use App\Models\Reimbursement;
 
 class ReimbursementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+        $this->middleware(['permission:reimbursement-approval'], ['only' => ['index', 'approval']]);
+    }
     public function index()
     {
         $data = Reimbursement::latest()->paginate(10);
