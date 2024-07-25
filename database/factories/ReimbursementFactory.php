@@ -24,7 +24,7 @@ class ReimbursementFactory extends Factory
             'deskripsi' => $this->faker->text(200),
             'file' => $filePath,
             'created_at' => now(),
-            'is_approved' => $this->faker->boolean(10),
+            'status' => 0,
         ];
     }
 }

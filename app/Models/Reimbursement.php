@@ -19,7 +19,7 @@ class Reimbursement extends Model
         'tanggal',
         'deskripsi',
         'file',
-        'is_approved',
+        'status',
     ];
 
     /**

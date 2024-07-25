@@ -24,7 +24,7 @@ class ReimbursementsTableSeeder extends Seeder
                 'file' => 'uploads/reimbursement_dummy.pdf',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'is_approved' => false,
+                'status' => 0,
             ]
         ]);
     }

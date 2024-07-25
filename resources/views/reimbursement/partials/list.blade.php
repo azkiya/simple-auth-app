@@ -44,19 +44,48 @@
                             </button>
                         </td>
                         <td class="px-6 py-4">
-                            {{ $inv->is_approved == false ? 'Belum disetejui' : 'Sudah disetujui' }}
+                            @php
+                                switch ($inv->status) {
+                                    case 0:
+                                        $message = 'Menunggu konfirmasi';
+                                        $class = 'bg-yellow-500';
+                                        break;
+                                    case 1:
+                                        $message = 'Sudah disetujui';
+                                        $class = 'bg-green-500';
+                                        break;
+
+                                    case 2:
+                                        $message = 'Ditolak';
+                                        $class = 'bg-red-500';
+                                        break;
+                                    default:
+                                        $message = 'Status unknown.';
+                                        $class = 'bg-gray-500';
+                                        break;
+                                }
+                            @endphp
+                            <div class="{{ $class }} text-white p-2 rounded mt-4">
+                                {{ $message }}
+                            </div>
                         </td>
-                        <td class="flex items-center px-6 py-4">
-                            <a href="#"
-                                onclick="event.preventDefault(); if (confirm('Apakah anda yakin menyetujui/revoke reimbursement ini ?')) { document.getElementById('approve-form-{{ $inv->id }}').submit(); }"
-                                class="font-medium text-green-600 dark:text-green-500 hover:underline ms-3">
-                                {{ $inv->is_approved == false ? 'Approval' : 'Revoke' }}</a>
-                            <form id="approve-form-{{ $inv->id }}"
-                                action="{{ route('reimbursements.approved', $inv) }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                                @method('PATCH')
-                            </form>
+                        <td class="flex items-center px-6 py-6">
+                            @if ($inv->status == 0)
+                                <form action="{{ route('reimbursements.approved', $inv->id) }}" method="POST">
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="mb-4">
+                                        <button type="submit" name="status" value="1"
+                                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 mb-3 rounded">
+                                            Approved
+                                        </button>
+                                        <button type="submit" name="status" value="2"
+                                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded">
+                                            Rejected
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                     <div id="previewModal-{{ $inv->id }}"

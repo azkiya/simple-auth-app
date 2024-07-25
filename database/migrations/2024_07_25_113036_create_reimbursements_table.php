@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tanggal');
             $table->string('deskripsi');
             $table->string('file')->nullable();
-            $table->boolean('is_approved')->default(0);
+            $table->tinyInteger('status')->default(0);//0:waiting, 1: approved, 2:reject
             $table->timestamps();
         });
     }

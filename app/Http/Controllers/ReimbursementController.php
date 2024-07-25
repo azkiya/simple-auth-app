@@ -17,11 +17,13 @@ class ReimbursementController extends Controller
         return view('reimbursement.index', compact('data'));
     }
 
-    public function approval(string $id)
+    public function approval(Request $request, string $id)
     {
         $data = Reimbursement::findOrFail($id);
-        $changedApproval = $data->is_approved;
-        $data->is_approved = $changedApproval == true ? false : true;
+        $request->validate([
+            'status' => 'required',
+        ]);
+        $data->status = (int) $request['status'];
         $data->save();
 
         $data = Reimbursement::latest()->paginate(10);
