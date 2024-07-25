@@ -44,18 +44,18 @@
                             </button>
                         </td>
                         <td class="px-6 py-4">
-                            {{ $inv->status == false ? 'Belum disetejui' : 'Sudah disetujui' }}
+                            {{ $inv->is_approved == false ? 'Belum disetejui' : 'Sudah disetujui' }}
                         </td>
                         <td class="flex items-center px-6 py-4">
-
                             <a href="#"
-                                onclick="event.preventDefault(); if (confirm('Apakah anda yakin menyetujui reimbursement ini ?')) { document.getElementById('delete-form-{{ $inv->id }}').submit(); }"
-                                class="font-medium text-green-600 dark:text-green-500 hover:underline ms-3">Approval</a>
-                            <form id="delete-form-{{ $inv->id }}"
-                                action="{{ route('reimbursements.destroy', $inv) }}" method="POST"
+                                onclick="event.preventDefault(); if (confirm('Apakah anda yakin menyetujui/revoke reimbursement ini ?')) { document.getElementById('approve-form-{{ $inv->id }}').submit(); }"
+                                class="font-medium text-green-600 dark:text-green-500 hover:underline ms-3">
+                                {{ $inv->is_approved == false ? 'Approval' : 'Revoke' }}</a>
+                            <form id="approve-form-{{ $inv->id }}"
+                                action="{{ route('reimbursements.approved', $inv) }}" method="POST"
                                 style="display: none;">
                                 @csrf
-                                @method('DELETE')
+                                @method('PATCH')
                             </form>
                         </td>
                     </tr>

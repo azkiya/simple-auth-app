@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReimbursementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/users', \App\Http\Controllers\UserController::class);
     Route::resource('/reimbursements', \App\Http\Controllers\ReimbursementController::class);
+    Route::patch('/reimbursements/approval/{id}', [ReimbursementController::class, 'approval'])->name('reimbursements.approved');
 });
 
 

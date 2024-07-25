@@ -17,6 +17,17 @@ class ReimbursementController extends Controller
         return view('reimbursement.index', compact('data'));
     }
 
+    public function approval(string $id)
+    {
+        $data = Reimbursement::findOrFail($id);
+        $changedApproval = $data->is_approved;
+        $data->is_approved = $changedApproval == true ? false : true;
+        $data->save();
+
+        $data = Reimbursement::latest()->paginate(10);
+        return view('reimbursement.index', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
